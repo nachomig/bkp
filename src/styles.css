@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+* {
+  box-sizing: border-box;
+}
+header {background: #f3f3f3; color: white; padding: 1rem;}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+nav {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+nav .btn {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #1976d2;
+  color: white;
+  border: 1px solid #1976d2;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}

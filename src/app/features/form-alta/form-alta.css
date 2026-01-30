@@ -1,0 +1,133 @@
+
+.inputTxt {width: 100%; text-align: left;}
+.inputForm {width: 100%; }
+
+
+.mb-3 {
+     width: auto;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+}
+label {
+   
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #333;
+  
+}
+input {
+
+  padding: 0.4rem 0.75rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+       display: block;
+  margin: 0 auto;
+  height: 40%;
+  background: #007bff; /*color: ;*/
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 0.75 rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn1 {
+  display: block;
+  margin: 0 auto;
+  height: 38px;
+  background: #0A84A0;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  background-image: url('/lupa.png');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-left: 30px;
+}
+
+.btn1:hover {
+  background: #066978;
+  background-image: url('/lupa.png');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  }
+button:hover {
+  background: #0056b3;
+}
+
+.btn .btn1{
+  background-color: #0A84A0;
+}
+
+.form-label {
+    font-size: 12px;
+    
+}
+
+
+
+
+.text-danger {
+    font-size: 12px;
+}
+
+.titulo-formulario {
+  font-size: 14px;
+  color: #0A84A0;
+  letter-spacing: 1px; 
+  position: relative;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Subrayado decorativo */
+.titulo-formulario::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #0A84A0;
+  border-radius: 2px;
+}
+::placeholder {
+  color: #6c757d;   
+  font-style: italic; 
+  font-size: 12px;  
+}
+
+
+.razonS {
+  font-size: 0.85rem;
+  width: 100%;
+  border: none;
+  background-color: #f3f3f3;
+}

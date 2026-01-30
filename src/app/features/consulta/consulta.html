@@ -1,0 +1,26 @@
+<div class="container mt-4" style="width: 80%;">
+<!-- Busqueda por cuit  -->
+  <form [formGroup]="fConsultaCUIT" (ngSubmit)="enviar()">
+    
+    <h3 class="titulo-formulario">Formulario de Consulta</h3>
+
+  <div class="mb-3">
+    <label for="importe" class="form-label">Buscar por CUIT:</label>
+    
+      <input [ngClass]="{'is-invalid': hasErrors('fcuit', 'required') || hasErrors('fcuit', 'minlength') }"
+    type="text" class="form-control" id="fcuit" formControlName="fcuit" pattern="[0-9]*">
+    @if (hasErrors('fcuit', 'required')) {
+      <div class="text-danger">CUIT Requerido</div>
+    }
+    @if (hasErrors('fcuit', 'minlength')) {
+      <div class="text-danger">CUIT Requiere 11 Digitos</div>
+    }
+    @if (hasErrors('fcuit', 'maxlength')) {
+      <div class="text-danger">Exceso de Numeros, CUIT Requiere 11 Digitos</div>
+    }
+  </div>
+  <div class="mb-3">
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</div>
+</form>
+</div>

@@ -1,0 +1,198 @@
+<div class="container mt-4" style="width: 80%;">
+
+  <form [formGroup]="formularioContacto" (ngSubmit)="enviar()">
+    
+    <h3 class="titulo-formulario">Formulario de Alta de Créditos Fiscales</h3>
+    <!-- Selector de tipo de crédito -->
+    <div class="mb-3">
+      <label for="tipoCredito" class="form-label">Tipo de Crédito:</label>
+      <select class="form-select" id="tipoCredito" formControlName="tipoCredito" 
+      [ngClass]="{'is-invalid': formularioContacto.get('tipoCredito')?.invalid && formularioContacto.get('tipoCredito')?.touched}">
+        <option value="" disabled selected>Selecciona un tipo de crédito</option>
+       <option value="3">Mecenazgo</option>
+        <option value="1">COPRET</option>
+        <option value="2">CIC</option> 
+      </select>
+      @if (formularioContacto.get('tipoCredito')?.invalid && formularioContacto.get('tipoCredito')?.touched) {
+        <div class="invalid-feedback">
+          El tipo de crédito es obligatorio.
+        </div>
+      }
+      </div>
+<!-- datos comunes obligatorios-->
+ <!-- CUIT -->
+  <!-- <div class="mb-3">
+    <label for="cuit" class="form-label">CUIT:</label>
+    <input [ngClass]="{'is-invalid': hasErrors('cuit', 'required') || hasErrors('cuit', 'minlength') }"
+    type="text" class="form-control" id="cuit" formControlName="cuit" pattern="[0-9]*">
+    @if (hasErrors('cuit', 'required')) {
+      <div class="text-danger">CUIT Requerido</div>
+    }
+    @if (hasErrors('cuit', 'minlength')) {
+      <div class="text-danger">CUIT Requiere 11 Digitos</div>
+    }
+    @if (hasErrors('cuit', 'maxlength')) {
+      <div class="text-danger">Exceso de Numeros, CUIT Requiere 11 Digitos</div>
+    }
+   
+    <input type="text" class="form-label" id="razon" placeholder="razon social">
+  </div>
+-->
+  <div class="mb-3">
+    <label for="cuit" class="form-label">CUIT:</label>
+    <div class="input-group">
+      <input [ngClass]="{'is-invalid': hasErrors('cuit', 'required') || hasErrors('cuit', 'minlength') }"
+      type="text" class="form-control" id="cuit" formControlName="cuit" pattern="[0-9]*">
+      <button type="button" class="btn1 btn-outline-secondary" (click)="buscarRazonSocial()"></button>
+    </div>
+    @if (hasErrors('cuit', 'required')) {
+      <div class="text-danger">CUIT Requerido</div>
+    }
+    @if (hasErrors('cuit', 'minlength')) {
+      <div class="text-danger">CUIT Requiere 11 Digitos</div>
+    }
+    @if (hasErrors('cuit', 'maxlength')) {
+      <div class="text-danger">Exceso de Numeros, CUIT Requiere 11 Digitos</div>
+    }
+   
+    <label for="razon" class="form-label mt-2">Razón Social:</label>
+    <input type="text" class="razonS" id="razon" formControlName="razonSocial" readonly>
+</div>
+ <!-- Importe -->
+  <div class="mb-3">
+    <label for="importe" class="form-label">Importe del crédito:</label>
+    <input [ngClass]="{'is-invalid': hasErrors('importeCredito', 'required')}"
+    type="text" class="form-control" id="importeCredito" formControlName="importeCredito" placeholder="Ej: 1234567890123456.99">
+       @if (hasErrors('importeCredito', 'required')) {
+         <div class="text-danger">Importe Requerido</div>
+       }
+       @if (hasErrors('importeCredito', 'pattern')) {
+         <div class="text-danger">Solo números, máximo 16 enteros y 2 decimales.</div>
+       }
+  </div>
+ <!-- Fecha emisión -->
+  <div class="mb-3">
+      <label class="form-label">Fecha de Emisión</label>
+      <input type="date" class="form-control"
+             formControlName="fechaEmision"
+             [ngClass]="{'is-invalid': formularioContacto.get('fechaEmision')?.invalid && formularioContacto.get('fechaEmision')?.touched}">
+      @if (formularioContacto.get('fechaEmision')?.invalid && formularioContacto.get('fechaEmision')?.touched) {
+        <div class="invalid-feedback">
+          La fecha de emisión es obligatoria.
+        </div>
+      }
+    </div>
+  
+   
+<!-- Expediente -->
+  <div class="mb-3">
+      <label class="form-label">Expediente</label>
+      <input type="text" class="form-control" formControlName="expediente"
+             [ngClass]="{'is-invalid': formularioContacto.get('expediente')?.invalid && formularioContacto.get('expediente')?.touched}">
+      @if (formularioContacto.get('expediente')?.invalid && formularioContacto.get('expediente')?.touched) {
+        <div class="invalid-feedback">
+          El expediente es obligatorio.
+        </div>
+      }
+    </div>
+
+          
+  <!-- datos dinamico segun el select-->
+   <!-- Cultura -->
+    @if (tipoCredito === '3') {
+        
+        <div class="mb-3">
+        <label class="form-label">Número de Resolución</label>
+        <input type="text" class="form-control" formControlName="numeroResolucion"
+             [ngClass]="{'is-invalid': formularioContacto.get('numeroResolucion')?.invalid && formularioContacto.get('numeroResolucion')?.touched}">
+        @if (formularioContacto.get('numeroResolucion')?.invalid && formularioContacto.get('numeroResolucion')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+        </div>
+        <div class="mb-3">
+        <label class="form-label">Acto Administrativo</label>
+        <input type="text" class="form-control" formControlName="actoAdministrativo"
+             [ngClass]="{'is-invalid': formularioContacto.get('actoAdministrativo')?.invalid && formularioContacto.get('actoAdministrativo')?.touched}">
+        @if (formularioContacto.get('actoAdministrativo')?.invalid && formularioContacto.get('actoAdministrativo')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+        </div>
+        <div class="mb-3">
+        <label class="form-label">Fecha Acto Administrativo</label>
+        <input type="date" class="form-control" formControlName="fechaActoAdministrativo"
+             [ngClass]="{'is-invalid': formularioContacto.get('fechaActoAdministrativo')?.invalid && formularioContacto.get('fechaActoAdministrativo')?.touched}">
+        @if (formularioContacto.get('fechaActoAdministrativo')?.invalid && formularioContacto.get('fechaActoAdministrativo')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+        </div>
+        <div class="mb-3">
+        <label class="form-label">Fecha Resolución</label>
+        <input type="date" class="form-control" formControlName="fechaResolucion"
+             [ngClass]="{'is-invalid': formularioContacto.get('fechaResolucion')?.invalid && formularioContacto.get('fechaResolucion')?.touched}">
+        @if (formularioContacto.get('fechaResolucion')?.invalid && formularioContacto.get('fechaResolucion')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+        </div>
+      }
+
+    <!-- Copret -->
+    @if (tipoCredito === '1') {
+      <div class="mb-3">
+        <label class="form-label">Número de Certificado</label>
+        <input type="text" class="form-control" formControlName="numeroCertificado"
+               [ngClass]="{'is-invalid': formularioContacto.get('numeroCertificado')?.invalid && formularioContacto.get('numeroCertificado')?.touched}">
+        @if (formularioContacto.get('numeroCertificado')?.invalid && formularioContacto.get('numeroCertificado')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+      </div>
+    }
+
+    <!-- CIC  -->
+    @if (tipoCredito === '2') {
+   
+      <div class="mb-3">
+        <label class="form-label">Número de Certificado</label>
+        <input type="text" class="form-control" formControlName="cicNumeroCertificado"
+               [ngClass]="{'is-invalid': formularioContacto.get('cicNumeroCertificado')?.invalid && formularioContacto.get('cicNumeroCertificado')?.touched}">
+        @if (formularioContacto.get('cicNumeroCertificado')?.invalid && formularioContacto.get('cicNumeroCertificado')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Número de Resolución</label>
+        <input type="text" class="form-control" formControlName="cicNumeroResolucion"
+               [ngClass]="{'is-invalid': formularioContacto.get('cicNumeroResolucion')?.invalid && formularioContacto.get('cicNumeroResolucion')?.touched}">
+        @if (formularioContacto.get('cicNumeroResolucion')?.invalid && formularioContacto.get('cicNumeroResolucion')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fecha de Resolución</label>
+        <input type="date" class="form-control" formControlName="cicFechaResolucion"
+               [ngClass]="{'is-invalid': formularioContacto.get('cicFechaResolucion')?.invalid && formularioContacto.get('cicFechaResolucion')?.touched}">
+        @if (formularioContacto.get('cicFechaResolucion')?.invalid && formularioContacto.get('cicFechaResolucion')?.touched) {
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+          </div>
+        }
+      </div>
+    }
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</div>
+</form>
+</div>
